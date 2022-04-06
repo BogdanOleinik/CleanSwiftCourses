@@ -69,7 +69,7 @@ class CourseDetailsViewController: UIViewController {
 }
 
 extension CourseDetailsViewController: CourseDetailsDisplayLogic {
-    func displaySomething(viewModel: CourseDetails.Something.ViewModel) {
-        
+    func displayCourseSetails(viewModel: CourseDetails.Something.ViewModel) {
+        courseNameLabel.text = viewModel.courseName
     }
 }

@@ -15,19 +15,21 @@ protocol CourseDetailsBusinessLogic {
 }
 
 protocol CourseDetailsDataStore {
-    
+    var course: Course? { get set }
 }
 
 class CourseDetailsInteractor: CourseDetailsBusinessLogic, CourseDetailsDataStore {
     
     var presenter: CourseDetailsPresentationLogic?
     var worker: CourseDetailsWorker?
+    var course: Course?
     
     func doSomething(request: CourseDetails.Something.Request) {
+        course = request.course
         worker = CourseDetailsWorker()
         worker?.doSomeWork()
         
-        let response = CourseDetails.Something.Response()
+        let response = CourseDetails.Something.Response(courseName: course?.name)
         presenter?.presentSomething(response: response)
     }
 }
