@@ -13,7 +13,8 @@
 import UIKit
 
 protocol CourseDetailsDisplayLogic: AnyObject {
-    func displayCourseSetails(viewModel: CourseDetails.Something.ViewModel)
+    func displayCourseSetails(viewModel: CourseDetails.ShowDetails.ViewModel)
+    func displayFavoriteStatus(viewModel: CourseDetails.SetFavoriteStatus.ViewModel)
 }
 
 class CourseDetailsViewController: UIViewController {
@@ -26,8 +27,7 @@ class CourseDetailsViewController: UIViewController {
     
     var interactor: CourseDetailsBusinessLogic?
     var router: (NSObjectProtocol & CourseDetailsRoutingLogic & CourseDetailsDataPassing)?
-    var course: Course!
-    
+
     // MARK: Object lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -46,11 +46,11 @@ class CourseDetailsViewController: UIViewController {
     }
     
     @IBAction func toggleFavorite(_ sender: UIButton) {
+        interactor?.setFavoriteStatus()
     }
         
     private func passRequest() {
-        let request = CourseDetails.Something.Request(course: course)
-        interactor?.doSomething(request: request)
+        interactor?.provideCourseDetails()
     }
     
     // MARK: Setup
@@ -69,7 +69,15 @@ class CourseDetailsViewController: UIViewController {
 }
 
 extension CourseDetailsViewController: CourseDetailsDisplayLogic {
-    func displayCourseSetails(viewModel: CourseDetails.Something.ViewModel) {
+    func displayCourseSetails(viewModel: CourseDetails.ShowDetails.ViewModel) {
         courseNameLabel.text = viewModel.courseName
+        numberOfLessonsLabel.text = viewModel.numberOfLessons
+        numberOfTestsLabel.text = viewModel.numberOfTests
+        courseImage.image = UIImage(data: viewModel.imageData)
+        favoriteButton.tintColor = viewModel.isFavorite ? .red : .gray
+    }
+    
+    func displayFavoriteStatus(viewModel: CourseDetails.SetFavoriteStatus.ViewModel) {
+        favoriteButton.tintColor = viewModel.isFavorite ? .red : .gray
     }
 }

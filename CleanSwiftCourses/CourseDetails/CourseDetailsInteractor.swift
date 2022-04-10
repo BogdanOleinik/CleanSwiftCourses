@@ -11,7 +11,9 @@
 //
 
 protocol CourseDetailsBusinessLogic {
-    func doSomething(request: CourseDetails.Something.Request)
+    var isFavorite: Bool { get }
+    func provideCourseDetails()
+    func setFavoriteStatus()
 }
 
 protocol CourseDetailsDataStore {
@@ -23,13 +25,29 @@ class CourseDetailsInteractor: CourseDetailsBusinessLogic, CourseDetailsDataStor
     var presenter: CourseDetailsPresentationLogic?
     var worker: CourseDetailsWorker?
     var course: Course?
+    var isFavorite: Bool = false
     
-    func doSomething(request: CourseDetails.Something.Request) {
-        course = request.course
+    func provideCourseDetails() {
         worker = CourseDetailsWorker()
-        worker?.doSomeWork()
         
-        let response = CourseDetails.Something.Response(courseName: course?.name)
+        let imageData = worker?.getImage(from: course?.imageUrl)
+        isFavorite = worker?.getFavoriteStatus(for: course?.name ?? "") ?? false
+        
+        let response = CourseDetails.ShowDetails.Response(
+            courseName: course?.name,
+            numberOfLessons: course?.numberOfLessons,
+            numberOfTests: course?.numberOfTests,
+            imageData: imageData,
+            isFavorite: isFavorite
+        )
         presenter?.presentSomething(response: response)
+    }
+    
+    func setFavoriteStatus() {
+        isFavorite.toggle()
+        worker?.setFavoriteStatus(for: course?.name ?? "", with: isFavorite)
+        
+        let response = CourseDetails.SetFavoriteStatus.Response(isFavorite: isFavorite)
+        presenter?.presentFavoriteStatus(response: response)
     }
 }
