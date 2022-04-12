@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C35BB0C2805F0F300B7C087 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C35BB0B2805F0F300B7C087 /* SceneDelegate.swift */; };
 		9CA614BF27FD8198008DCA90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA614BE27FD8198008DCA90 /* AppDelegate.swift */; };
 		9CA614C627FD8198008DCA90 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CA614C427FD8198008DCA90 /* Main.storyboard */; };
 		9CA614C827FD8198008DCA90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CA614C727FD8198008DCA90 /* Assets.xcassets */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9C35BB0B2805F0F300B7C087 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9CA614BB27FD8198008DCA90 /* CleanSwiftCourses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanSwiftCourses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CA614BE27FD8198008DCA90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9CA614C527FD8198008DCA90 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				9CA614BE27FD8198008DCA90 /* AppDelegate.swift */,
+				9C35BB0B2805F0F300B7C087 /* SceneDelegate.swift */,
 				9CA614CC27FD8198008DCA90 /* Info.plist */,
 			);
 			path = "Supporting Files";
@@ -263,6 +266,7 @@
 				9CD7A5062802DBE90065F21C /* CourseListViewController.swift in Sources */,
 				9CF4CAD327FDF58B00E621FC /* CourseDetailsPresenter.swift in Sources */,
 				9CD7A5092802F03E0065F21C /* CourseTableViewCell.swift in Sources */,
+				9C35BB0C2805F0F300B7C087 /* SceneDelegate.swift in Sources */,
 				9CF4CAD527FDF58B00E621FC /* CourseDetailsRouter.swift in Sources */,
 				9CF4CAD627FDF58B00E621FC /* CourseDetailsModels.swift in Sources */,
 			);
